@@ -1,0 +1,73 @@
+/* Native phone layout: safe areas, readable daily page, compact side overview. */
+html,body{height:100%;overscroll-behavior:none}
+body,body.book-home{padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.app,.book-home .app{height:100dvh;min-height:0;max-width:900px;overflow:hidden}
+.app>main,.book-home .app>main{height:100%;display:flex;flex-direction:column;min-height:0;padding:calc(8px + env(safe-area-inset-top,0px)) 10px calc(88px + env(safe-area-inset-bottom,0px));overflow:hidden}
+header,.book-home header{flex:none;margin:0 2px 8px}
+h1,.book-home h1{font:750 21px/1.25 -apple-system,BlinkMacSystemFont,sans-serif;letter-spacing:0}
+header p,.book-home header p{font-size:12px;margin-top:4px}
+.live-info{margin-top:5px;min-height:44px}
+#content{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain}
+.book-home #content{overflow:hidden;display:flex;flex-direction:column}
+.book-home .openbook{flex:1;min-height:0;grid-template-columns:minmax(0,26%) minmax(0,74%);border:0;box-shadow:none;gap:8px;background:none;border-radius:0;overflow:hidden}
+.book-home .openbook:after{display:none}
+.book-home .book-left,.book-home .book-right{min-height:0;max-height:none;padding:8px;border-radius:12px;background:#fffdf7;overflow:hidden}
+.book-home .book-left{display:flex;flex-direction:column}
+.book-home .book-whale{height:30px;min-height:30px;width:100%;margin:0 0 6px}
+.book-home .upcoming-panel{min-height:0;overflow:auto;margin-bottom:6px}
+.book-home .upcoming-bullets{padding-left:12px}
+.book-home .bullet-when{font-size:11px;line-height:1.4}
+.book-home .bullet-title{font-size:12px;line-height:1.35}
+.book-home .book-links{margin-top:auto;flex:none}
+.book-home .book-link{min-height:48px;padding:6px 2px;flex-direction:column;gap:2px}
+.book-home .book-link strong{font-size:12px}
+.book-home .book-right .diarypage{height:100%;min-height:0;max-height:none;overflow:hidden;display:flex;flex-direction:column;padding:0}
+.book-home .book-right .pagecontrols{flex:none;margin-bottom:8px;padding-bottom:8px;gap:4px}
+.book-home .book-right .pagecontrols button{min-height:48px}
+.book-home .book-right .pagedate{flex:none;margin:0 0 8px;gap:10px}
+.book-home .book-right .pagedate>span{font-size:45px}
+.book-home .book-right .pagedate>div{font-size:14px}
+.book-home .book-right .pagedate strong{font-size:20px}
+.book-home .book-right .nameday-label{flex:none;font-size:14px;padding:8px;margin:0 0 10px}
+.book-home .book-right .day-actions{flex:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin:0 0 10px}
+.book-home .day-actions button{min-height:56px;font-size:16px;padding:10px 2px;letter-spacing:0}
+.book-home .book-right .day-content{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;padding-bottom:12px}
+.book-home .book-right .row{flex-wrap:wrap}
+.book-home .book-right .rowbody{flex-basis:100%}
+.book-home .book-right .rowbody strong{font-size:16px}
+.book-home .book-right .rowbody p{font-size:14px}
+.book-home .book-right .pagelines{min-height:80px}
+.bottom-bar{padding:6px 5px calc(6px + env(safe-area-inset-bottom,0px))}
+#nav{gap:3px}
+#nav a,#nav button{min-height:62px;font-size:10px}
+button,.iconbutton,.smallbtn{min-height:48px}
+dialog{max-height:calc(100dvh - 32px - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));padding:18px}
+.dialogtop h2{font:700 23px/1.2 -apple-system,BlinkMacSystemFont,sans-serif}
+input,select,textarea{font-size:17px}
+@media(max-width:360px){.book-home .openbook{grid-template-columns:minmax(0,24%) minmax(0,76%);gap:5px}.book-home .book-left,.book-home .book-right{padding:6px}.book-home .day-actions button{font-size:14px}.book-home .book-right .pagedate strong{font-size:18px}}
+@media(max-height:620px){header p,.book-home header p{display:none}.book-home .book-right .pagedate>span{font-size:32px}.book-home .book-whale{display:none}.book-home .book-right .nameday-label{padding:4px;margin-bottom:6px}.book-home .day-actions button{min-height:48px}.book-home .book-right .pagecontrols{margin-bottom:4px;padding-bottom:4px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* Android: vertical navigation and grouped upcoming dates. */
+.android-ui .app>main,.android-ui.book-home .app>main{padding-left:calc(88px + env(safe-area-inset-left,0px));padding-right:8px;padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}
+.android-ui .bottom-bar{position:fixed;left:0;top:0;bottom:0;right:auto;width:80px;height:100dvh;padding:calc(6px + env(safe-area-inset-top,0px)) 4px calc(6px + env(safe-area-inset-bottom,0px));border-top:0;border-right:1px solid #c1b6a7;box-shadow:none;overflow:auto}
+.android-ui #nav{position:static;display:flex;flex-direction:column;justify-content:flex-start;width:100%;height:100%;margin:0;padding:0;border:0;gap:5px;background:none}
+.android-ui #nav a,.android-ui #nav button{flex:1 0 64px;width:100%;min-height:64px;display:flex;flex-direction:column;justify-content:center;padding:5px 2px;font-size:11px;line-height:1.25;letter-spacing:0}
+.android-ui #nav span{text-align:center;overflow-wrap:normal}
+.android-ui .android-home{height:100%;min-height:0;display:flex;flex-direction:column;gap:8px}
+.android-ui .android-calendar{flex:none;display:flex;justify-content:flex-end}
+.android-ui .android-calendar a{display:flex;align-items:center;min-height:48px;padding:8px 16px;border-radius:10px;text-decoration:none;font-weight:700}
+.android-ui .android-home>.book-right{flex:1;min-height:0;border-radius:12px;padding:8px;background:#fffdf7;overflow:hidden}
+.android-ui .group-toolbar{position:sticky;top:0;background:var(--bg);z-index:1;padding-bottom:8px}
+.android-ui .group-toolbar label{margin:0 0 6px;font-size:15px;font-weight:700}
+.android-ui .group-toolbar .toolbar{margin:8px 0 0;gap:6px}
+.android-ui .group-toolbar .toolbar button{font-size:14px;padding:10px}
+.android-ui .group-toolbar .help{margin:8px 0 0}
+.android-ui .upcoming-columns{display:flex;align-items:flex-start;gap:12px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x proximity}
+.android-ui .upcoming-column{flex:0 0 min(280px,95%);min-width:0;background:#fffdf7;border:1px solid #c1ccc5;border-radius:12px;scroll-snap-align:start;padding:12px}
+.android-ui .upcoming-column h2{font:750 20px/1.3 -apple-system,BlinkMacSystemFont,sans-serif;text-transform:capitalize;margin-bottom:10px}
+.android-ui .upcoming-column ul{list-style:none;padding:0;margin:0}
+.android-ui .upcoming-column li{border-top:1px solid #d8dfda;padding:6px 0}
+.android-ui .occurrence{display:block;width:100%;text-align:left;padding:8px 0;min-height:56px}
+.android-ui .occurrence time{display:block;font-size:14px;color:#38574e}
+.android-ui .occurrence strong{display:block;font-size:16px;line-height:1.4;overflow-wrap:anywhere;margin-top:4px}
+.android-ui #toast{left:calc(50% + 40px);max-width:calc(100% - 100px);bottom:calc(15px + env(safe-area-inset-bottom,0px))}
