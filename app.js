@@ -83,3 +83,60 @@ function openSettings(){showDialog('Váš diář',`<div class="helpbox"><b>Na pl
 function backup(){download(JSON.stringify({version:2,...data},null,2),'osobni-diar-MM-zaloha.json','application/json');toast('Záloha je připravena ke stažení')}
 async function restoreBackup(file){if(!file)return;try{let v=JSON.parse(await file.text());if(!Array.isArray(v.events)||!Array.isArray(v.notes)||!Array.isArray(v.shopping))throw Error();const isStr=(v,max)=>typeof v==='string'&&v.length<=max;const validDate=s=>isStr(s,10)&&/^\d{4}-\d{2}-\d{2}$/.test(s)&&!isNaN(dateOf(s))&&key(dateOf(s))===s;const validId=s=>isStr(s,80)&&/^[\w-]+$/.test(s);if(!v.events.every(e=>validId(e.id)&&isStr(e.title,150)&&validDate(e.date)&&['event','birthday','nameday'].includes(e.kind)&&isStr(e.note,5000)&&(!e.time||/^\d{2}:\d{2}$/.test(e.time))&&['0','15','60','1440','4320','10080'].includes(e.reminder)&&(e.owner===undefined||['','Maty','Vojta'].includes(e.owner))&&(e.category===undefined||isStr(e.category,100))&&(e.repeat===undefined||Object.hasOwn(REPEATS,e.repeat))&&(e.repeatUntil===undefined||e.repeatUntil===''||(validDate(e.repeatUntil)&&e.repeatUntil>=e.date))))throw Error();if(!v.notes.every(n=>validId(n.id)&&isStr(n.title,150)&&isStr(n.body,30000)&&validDate(n.date)))throw Error();if(!v.shopping.every(i=>validId(i.id)&&isStr(i.text,200)&&typeof i.done==='boolean'))throw Error();if(v.links!==undefined&&(!Array.isArray(v.links)||!v.links.every(l=>validId(l.id)&&isStr(l.title,80)&&!!safeWebUrl(l.url))))throw Error();if(v.weatherCity!==undefined&&!validWeatherCity(v.weatherCity))throw Error();if(!confirm('Obnovení nahradí současné záznamy obsahem zálohy. Pokračovat?'))return;data=normalizeData(v);let ok=save();modal.close();render();if(ok){toast('Záloha byla obnovena');loadWeather(true)}}catch(e){toast('Tento soubor není platnou zálohou diáře.')}}
 window.addEventListener('hashchange',()=>{render();window.scrollTo(0,0)});window.addEventListener('storage',ev=>{if(ev.key==='mm-diary-v1')try{let v=JSON.parse(ev.newValue);if(v&&Array.isArray(v.events)&&Array.isArray(v.notes)&&Array.isArray(v.shopping)){data=normalizeData(v);render();loadWeather()}}catch{}});render();loadWeather();setInterval(updateClock,1000);setInterval(()=>{if(!document.hidden)loadWeather()},60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden){updateClock();loadWeather()}});
+
+// Expand occurrences over a visible, bounded twelve-month horizon.
+function groupedUpcoming(events,mode,{nextEventDate,effectiveRepeat,eventLabel,key,reference=new Date()}){
+  const until=new Date(reference);until.setFullYear(until.getFullYear()+1);
+  const groups=new Map();
+  for(const event of events){
+    let cursor=new Date(reference);
+    while(cursor<until){
+      const date=nextEventDate(event,cursor);
+      if(!date||date>=until)break;
+      const category=event.kind==='birthday'?'Narozeniny':event.kind==='nameday'?'Svátky':event.category||'Ostatní';
+      const person=event.owner||(event.kind!=='event'?event.title:'Společné');
+      const month=key(date).slice(0,7);
+      const groupKey=mode==='person'?person:mode==='month'?month:category;
+      const label=mode==='month'?date.toLocaleDateString('cs-CZ',{month:'long',year:'numeric'}):groupKey;
+      if(!groups.has(groupKey))groups.set(groupKey,{key:groupKey,label,items:[]});
+      groups.get(groupKey).items.push({event,date,label:eventLabel(event)});
+      if(effectiveRepeat(event)==='none')break;
+      const next=new Date(date.getFullYear(),date.getMonth(),date.getDate()+1);
+      if(next<=cursor)break;
+      cursor=next;
+    }
+  }
+  return [...groups.values()].sort((a,b)=>mode==='month'?a.key.localeCompare(b.key):a.label.localeCompare(b.label,'cs')).map(group=>({...group,items:group.items.sort((a,b)=>a.date-b.date||a.label.localeCompare(b.label,'cs'))}));
+}
+
+function installAndroidUI(){
+  document.body.classList.add('diary-layout');
+  document.querySelector('.headerline').insertAdjacentHTML('beforeend',`<div class="header-whale" aria-hidden="true">${whale}</div>`);
+  let mode='category';
+  try{const saved=localStorage.getItem('mm-upcoming-group');if(['category','person','month'].includes(saved))mode=saved;}catch{}
+  const originalRender=window.render;
+  window.homeBook=function(){return `<section class="book-right" aria-label="Denní stránka">${dayPage()}</section>`;};
+  window.setUpcomingGroup=function(value){
+    if(!['category','person','month'].includes(value))return;
+    mode=value;try{localStorage.setItem('mm-upcoming-group',value);}catch{}
+    render();
+  };
+  window.openUpcomingOccurrence=function(id,date){
+    selected=date;month=new Date(dateOf(date).getFullYear(),dateOf(date).getMonth(),1);
+    location.hash='dnes';
+  };
+  window.render=function(){
+    originalRender();
+    const link=document.querySelector('#nav a[href="#vyroci"]');
+    if(link){link.setAttribute('aria-label','Nejbližší termíny');link.querySelector('span').textContent='Nejbližší termíny';}
+    if(!document.querySelector('#nav a[href="#kalendar"]')) document.querySelector('#nav').insertAdjacentHTML('beforeend',`<a class="nav-calendar ${current==='kalendar'?'active':''}" href="#kalendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor">${icons.kalendar}</svg><span>Kalendář</span></a>`);
+    if(current!=='vyroci')return;
+    document.querySelector('#heading').textContent='Nejbližší termíny';
+    const groups=groupedUpcoming(data.events,mode,{nextEventDate,effectiveRepeat,eventLabel,key});
+    document.querySelector('#content').innerHTML=`<div class="group-toolbar"><label for="upcoming-group">Seskupit podle</label><select id="upcoming-group" onchange="setUpcomingGroup(this.value)">${[['category','Kategorií'],['person','Osob'],['month','Měsíců']].map(([v,t])=>`<option value="${v}" ${mode===v?'selected':''}>${t}</option>`).join('')}</select><div class="toolbar"><button class="primary" onclick="openEvent()">＋ Termín</button><button onclick="openEvent(null,'birthday')">＋ Narozeniny</button><button onclick="openEvent(null,'nameday')">＋ Svátek</button></div><p class="help">Následujících 12 měsíců · od nejbližšího data</p></div>${groups.length?`<div class="upcoming-columns" aria-label="Skupiny nejbližších termínů">${groups.map(group=>`<section class="upcoming-column"><h2>${esc(group.label)}</h2><ul>${group.items.map(({event:e,date,label})=>`<li><button class="occurrence" onclick="openUpcomingOccurrence('${e.id}','${key(date)}')"><time>${esc(date.toLocaleDateString('cs-CZ',{day:'numeric',month:'numeric',year:'numeric'}))}${e.time?' · '+esc(e.time):''}</time><strong>${esc(label)}</strong></button><button class="smallbtn" aria-label="Upravit ${esc(label)}" onclick="openEvent('${e.id}')">Upravit</button></li>`).join('')}</ul></section>`).join('')}</div>`:'<p class="empty">V následujících 12 měsících nejsou žádné termíny.</p>'}`;
+  };
+  render();
+}
+
+icons.vyroci=icons.kalendar;
+installAndroidUI();
