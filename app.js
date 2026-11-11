@@ -140,3 +140,15 @@ function installAndroidUI(){
 
 icons.vyroci=icons.kalendar;
 installAndroidUI();
+
+// Mobile drawer: no changes to saved diary data.
+function toggleMobileMenu(force){
+  const open=typeof force==='boolean'?force:!document.body.classList.contains('menu-open');
+  document.body.classList.toggle('menu-open',open);
+  document.getElementById('menu-toggle').setAttribute('aria-expanded',String(open));
+  document.getElementById('menu-backdrop').hidden=!open;
+  if(!open)document.getElementById('menu-toggle').focus();
+}
+document.getElementById('nav').addEventListener('click',()=>toggleMobileMenu(false));
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&document.body.classList.contains('menu-open'))toggleMobileMenu(false);});
+window.addEventListener('hashchange',()=>toggleMobileMenu(false));

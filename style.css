@@ -65,3 +65,44 @@ body.diary-layout{padding:0;background:radial-gradient(ellipse at 15% 10%,#e4eee
 }
 
 .header-whale{width:130px;height:66px;flex-shrink:0;background:#dfebe5;border-radius:50%;overflow:hidden}.header-whale svg{width:100%;height:100%}@media(max-width:700px){.header-whale{display:none}}
+
+/* Responsive navigation and natural page height. */
+.menu-toggle,.menu-backdrop{display:none}
+.diary-layout header,.diary-layout.book-home header{min-height:0}
+.diary-layout .weather-box{display:flex;align-items:center;gap:8px;min-width:0}
+.diary-layout .weather-source{writing-mode:horizontal-tb;font-size:10px;white-space:nowrap}
+.diary-layout .book-right,.diary-layout.book-home .book-right{height:auto;max-height:none;overflow:visible}
+.diary-layout .book-right .diarypage{height:auto;max-height:none;overflow:visible}
+.diary-layout .book-right .day-content{height:auto;max-height:none;overflow:visible;flex:initial}
+@media(max-width:700px){
+  .diary-layout .app>main,.diary-layout.book-home .app>main{padding:16px 12px 24px;min-width:0}
+  .diary-layout header,.diary-layout.book-home header{margin:0 0 18px;min-height:0;padding:0}
+  .diary-layout .headerline{justify-content:flex-start;gap:10px}
+  .diary-layout h1,.diary-layout.book-home h1{font-size:clamp(21px,6vw,28px);line-height:1.2;letter-spacing:-.5px;overflow-wrap:anywhere;min-width:0}
+  .diary-layout .menu-toggle{display:block;flex-shrink:0;min-width:44px;min-height:44px;padding:6px;background:#244e5b;color:white;font-size:24px}
+  .diary-layout .header-details{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-top:10px}
+  .diary-layout header p{font-size:13px;line-height:1.5}
+  .diary-layout .live-info{display:flex;flex-wrap:wrap;gap:12px;min-height:0;margin:0}
+  .diary-layout #live-clock{font-size:26px}
+  .diary-layout .weather-box{flex-wrap:wrap;gap:6px}
+  .diary-layout #weather-summary{font-size:13px;max-width:100%;white-space:normal;min-height:44px}
+  .diary-layout .bottom-bar{position:fixed;inset:0 auto 0 0;width:min(280px,82vw);height:100dvh;max-height:none;padding:70px 14px 24px;background:#f8f5f1;overflow-y:auto;z-index:31;transform:translateX(-105%);transition:transform .18s;visibility:hidden;border-radius:0;box-shadow:4px 0 20px #203e4925}
+  .diary-layout.menu-open .bottom-bar{transform:translateX(0);visibility:visible}
+  .diary-layout.menu-open .menu-toggle{position:relative;z-index:33}
+  .diary-layout .menu-backdrop:not([hidden]){display:block;position:fixed;inset:0;width:100%;height:100dvh;border:0;border-radius:0;background:#203e4970;z-index:30}
+  .diary-layout #nav{height:auto;max-height:none;width:100%;overflow:visible;transform:none}
+  .diary-layout #nav a,.diary-layout #nav button{flex-direction:row;justify-content:flex-start;gap:12px;min-height:48px;padding:10px 12px;font-size:14px}
+  .diary-layout #nav span{text-align:left}
+  .diary-layout .book-right,.diary-layout.book-home .book-right{padding:16px;min-height:0;width:100%;height:auto;max-height:none}
+  .diary-layout .book-right .diarypage{padding:0;min-height:0;height:auto;max-height:none}
+  .diary-layout .book-right .pagedate{gap:12px;margin:12px 0}
+  .diary-layout .book-right .pagedate>span{font-size:56px}
+  .diary-layout .book-right .pagedate strong{font-size:23px}
+  .diary-layout .book-right .day-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+  .diary-layout .day-actions button{font-size:14px;min-height:48px;padding:8px 3px}
+  .diary-layout .book-right .pagelines{min-height:140px}
+  .diary-layout .two{grid-template-columns:1fr}
+  .diary-layout .monthlarge .day{padding:5px 0;font-size:12px}
+  .diary-layout #toast{left:50%;max-width:calc(100% - 24px);bottom:20px}
+  .diary-layout .header-whale{display:none}
+}
