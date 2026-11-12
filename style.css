@@ -338,3 +338,22 @@ body.modern-mm.compact-home{height:100dvh;overflow:hidden}
 .month-day-detail summary{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;font-weight:700;min-height:38px;cursor:pointer;color:#244e5b;list-style:none}.month-day-detail summary span{font-size:11px;border:1px solid #b7cbbc;background:#e6efe3;border-radius:7px;padding:6px}.month-day-detail .selected-day{border:0;background:transparent;margin:0;padding:8px 0;box-shadow:none}.month-day-detail .selected-day .panelhead{display:none}
 @media(max-width:700px){.modern-mm.compact-home .header-whale{width:52px;height:42px}.modern-mm.compact-home h1{font-size:20px}.modern-mm .home-button{width:36px;min-width:36px;min-height:36px;padding:6px}.modern-mm .headerline{gap:6px}.settings-tile{padding:10px;gap:8px;font-size:13px}.settings-grid{gap:8px}.modern-mm.full-month-home .month-calendar-area .day .cal-name{font-size:7px}}
 @media(max-height:650px){.modern-mm.full-month-home .month-calendar-area .day .cal-name{display:none}.modern-mm.full-month-home .calendar-caption{font-size:15px;margin-bottom:4px}.modern-mm.full-month-home .month-calendar-area .days{grid-template-rows:18px repeat(var(--month-weeks),minmax(0,1fr));gap:2px}.modern-mm.full-month-home .month-calendar-area .day .daynum{width:21px;min-width:21px;height:21px;min-height:21px;line-height:21px;font-size:12px}}
+/* Calendar scrolling: the document owns vertical movement on every screen size. */
+body.modern-mm.natural-calendar{height:auto;min-height:100dvh;overflow:visible;touch-action:pan-y pinch-zoom}
+.modern-mm.natural-calendar .app{display:block;height:auto;min-height:100dvh;overflow:visible}
+.modern-mm.natural-calendar .app>main{display:block;height:auto;min-height:100dvh;max-height:none;overflow:visible;padding-bottom:calc(90px + env(safe-area-inset-bottom,0px))}
+.modern-mm.natural-calendar #content{display:block;height:auto;max-height:none;overflow:visible;min-height:0}
+.modern-mm.natural-calendar #content>.book-right{display:block;height:auto;max-height:none;min-height:0;overflow:visible}
+.modern-mm.natural-calendar .book-right>.full-month-page{display:block;height:auto;min-height:0;max-height:none;overflow:visible}
+.modern-mm.natural-calendar .month-calendar-area{display:block;flex:none;height:auto;min-height:0;max-height:none;overflow:visible}
+.modern-mm.natural-calendar .calendar-frame{display:block;flex:none;height:auto;min-height:0;max-height:none;overflow:visible;overscroll-behavior:auto;touch-action:pan-y pinch-zoom}
+.modern-mm.natural-calendar .calendar-frame>.monthlarge{display:block;flex:none;height:auto;max-height:none;overflow:visible}
+.modern-mm.natural-calendar .calendar-frame .days{display:grid;flex:none;height:auto;max-height:none;grid-template-columns:repeat(7,minmax(0,1fr));grid-template-rows:none;grid-auto-rows:auto;gap:3px;overflow:visible}
+.modern-mm.natural-calendar .month-calendar-area .days{grid-template-rows:22px repeat(var(--month-weeks),minmax(40px,clamp(40px,calc((100dvh - 350px)/var(--month-weeks)),66px)));grid-auto-rows:auto}
+.modern-mm.natural-calendar .calendar-frame .monthlarge .day{height:clamp(44px,7dvh,66px);min-height:40px;max-height:none;overflow:hidden;touch-action:pan-y pinch-zoom}
+.modern-mm.natural-calendar .month-calendar-area .monthlarge .day{height:100%;min-height:0}
+.modern-mm.natural-calendar .month-day-detail{height:auto;max-height:none;overflow:visible;overscroll-behavior:auto}
+.modern-mm.natural-calendar .selected-day{max-height:none;overflow:visible}
+.modern-mm.natural-calendar .calendar-frame .day .cal-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.modern-mm.natural-calendar .quick-bar{position:fixed;z-index:20}
+@media(max-height:590px){.modern-mm.natural-calendar .calendar-frame .day .cal-name{display:none}}

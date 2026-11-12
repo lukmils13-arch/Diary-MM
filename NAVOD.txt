@@ -1,23 +1,16 @@
-OSOBNÍ DIÁŘ MM – TYPY, NASTAVENÍ A CELÝ MĚSÍC
+DIÁŘ MM – PŘIROZENÉ POSOUVÁNÍ KALENDÁŘE
 
-NAHRÁNÍ
-1. Pokud už máte záznamy, stáhněte zálohu v Nastavení.
-2. Rozbalte ZIP.
-3. GitHub > lukmils13-arch/Diary-MM > Add file > Upload files.
-4. Nahrajte všechny rozbalené soubory vedle původního index.html. Nenahrávejte ZIP ani nadřazenou složku.
-5. Commit changes. Ostatní soubory nemažte.
-6. Po dokončení zveřejnění obnovte https://lukmils13-arch.github.io/Diary-MM/index.html.
+1. ZIP rozbalte.
+2. Na GitHubu otevřete Diary-MM > Add file > Upload files.
+3. Nahrajte všechny rozbalené soubory vedle původního index.html.
+4. Commit changes. Ostatní soubory nemažte.
+5. Po dokončení nasazení obnovte https://lukmils13-arch.github.io/Diary-MM/index.html.
 
-ZMĚNY
-Nastavení má přehledná tlačítka ve skupinách Správa diáře, Zálohování a Pomoc. Vysvětlující texty jsou v Návodech.
-Nastavení > Typy událostí: přidání, přejmenování a odstranění typu. Nové typy se nabízejí pro všechny osoby. Přejmenování změní typ u souvisejících událostí. Odstranění z nabídky ponechá staré události i jejich původní typ zachované.
-Spodní lišta: Zpět / Kalendář / Události / Poznámky.
-Domů je v horní liště, hlavním menu i u otevřených formulářů. Vrací na dnešek v denním zobrazení.
-Měsíční zobrazení přiděluje prostor všem týdnům, včetně šestiřádkových měsíců. Vybraný den zvýrazňuje malé číslo. Detail dne je sbalený a rozbalí se po klepnutí na den. Jmeniny se na nízkém displeji skryjí ve prospěch čísel dnů.
-Předchozí funkce osob, štítků, gest a formátovaných poznámek jsou zahrnuté.
+Kalendář i režim Měsíc v diáři nově používají svislé posouvání celé stránky. Uvnitř kalendáře ani detailu dne nejsou samostatné posuvné oblasti. Není třeba uchopovat táhlo: táhněte prstem po obsahu.
+Pokud se celý měsíc na nízký displej nevejde, zbytek je dosažitelný přirozeným posunem celé stránky. Vodorovné gesto mění měsíc (v kalendáři) nebo aktivní období (v diáři). Při psaní a označování textu je gesto vypnuté.
+Spodní navigace je stále pevná a pod obsahem je pro ni rezerva.
+Aktualizace zahrnuje i předchozí správu osob, typů, štítků, návody a formátované poznámky.
+Uložené záznamy zůstávají pod stejným klíčem mm-diary-v1. Máte-li již záznamy, před výměnou souborů si stáhněte zálohu. Nemažte data webu jako způsob obnovení stránky.
 
-OVĚŘENÍ
-31 automatických kontrol prošlo: původní funkce, typy, zachování údajů, šestitýdenní měsíc a návrat Domů.
-Skutečné vizuální zobrazení celého měsíce a velikosti tlačítek na konkrétním telefonu ještě potřebují ověření. V tomto prostředí nebylo možné dokončit kontrolu v prohlížeči.
-
-Ukládání zůstává místní v konkrétním zařízení a prohlížeči pod klíčem mm-diary-v1. Typy jsou zahrnuté v záloze. Nemažte data webu jako způsob obnovení stránky.
+33 automatických kontrol prošlo, včetně skutečných obsluh dotykových událostí: vodorovné přejetí přepíná měsíc, svislé neblokuje běžné posouvání, psaní je z gesta vyřazené.
+Vizuální a dotykové chování na skutečném telefonu ještě potřebuje ověření; v tomto prostředí nebylo možné dokončit test v prohlížeči.
