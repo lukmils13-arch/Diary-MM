@@ -143,3 +143,65 @@ body.diary-layout{padding:0;background:radial-gradient(ellipse at 15% 10%,#e4eee
  .event-card-main strong{font-size:16px}.event-card-main{padding:13px}.sticky-note{padding:17px}.sticky-note h2{font-size:18px}
  .diary-layout .book-right .selected-day{padding:12px}.diary-layout .book-right .selected-day h2{font-size:17px}
 }
+/* Compact MM design: original illustrated whale, clear sections and direct writing. */
+.modern-mm{font-family:'DM Sans','Segoe UI',Arial,sans-serif}
+.modern-mm .mm-icon{display:inline-block;width:24px;height:24px;flex-shrink:0;vertical-align:middle}
+.modern-mm.diary-layout .headerline{background:linear-gradient(120deg,#163f4c,#30626d);border-radius:18px 18px 34px 18px;padding:18px 22px;gap:16px;box-shadow:0 4px 16px #203e4910;min-height:100px}
+.modern-mm.diary-layout h1,.modern-mm.diary-layout.book-home h1{color:#fff;font-size:34px;font-weight:700;line-height:1.2;letter-spacing:-.8px}
+.modern-mm.diary-layout .header-whale{display:block;width:160px;height:84px;background:transparent;border-radius:0;overflow:visible;margin-left:auto}
+.modern-mm.diary-layout .header-whale svg{width:100%;height:100%;filter:drop-shadow(0 3px 5px #0a283630)}
+.modern-mm.diary-layout .header-details{margin:16px 4px 0;gap:12px 24px}
+.modern-mm.diary-layout header p{font-size:16px;font-weight:650;line-height:1.5}
+.modern-mm.diary-layout #live-clock{font-size:35px;letter-spacing:-1px}
+.modern-mm.diary-layout #weather-summary{border-radius:12px;background:#e0eee3;border:1px solid #b2cbb8;padding:9px 13px;font-size:15px}
+.modern-mm.diary-layout #weather-summary small{font-size:11px}
+.modern-mm.diary-layout .book-right,.modern-mm.diary-layout.book-home .book-right{padding:20px;border:1px solid #b2c2bd;border-radius:20px;background:#fffdf8;box-shadow:0 6px 20px #203e490a;min-height:0}
+.modern-mm.diary-layout .book-right .modern-day{margin:0;background:transparent;box-shadow:none;border:0;padding:0;border-radius:0;min-height:0}
+.modern-mm .period-tabs{padding:5px;gap:4px;border-radius:16px;background:#e7edE8;margin:0 0 16px}
+.modern-mm .period-tabs button{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;font-size:16px;min-height:52px;padding:9px 7px}
+.modern-mm .period-tabs button[aria-pressed=true]{background:#244e5b;box-shadow:0 3px 5px #203e4920}
+.modern-mm .period-tabs .mm-icon{width:23px;height:23px}
+.modern-mm.diary-layout .book-right .period-controls{padding:0 0 16px;margin:0 0 20px;border-bottom:1px solid #d7dcd4;gap:10px}
+.modern-mm.diary-layout .book-right .period-controls button:first-child,.modern-mm.diary-layout .book-right .period-controls button:last-child{display:flex;align-items:center;justify-content:center;width:48px;min-width:48px;min-height:44px;background:#eef2ec;color:#244e5b;border:1px solid #b6c6c0;border-radius:12px;padding:7px}
+.modern-mm.diary-layout .book-right .period-controls button:nth-child(2){background:#dfede3;border:1px solid #bfd1c4;border-radius:12px;padding:9px 25px;font-size:16px;color:#28594d;min-height:44px}
+.modern-date-row{display:flex;align-items:center;gap:18px;margin:0 0 22px;min-width:0}
+.modern-mm .date-badge{width:76px;min-width:76px;border:1px solid #d4d8d0;box-shadow:0 3px 5px #203e4915;border-radius:12px;overflow:hidden;padding:0;background:#fffdf7;color:#244e5b}
+.date-badge>span{display:block;padding:5px;background:#a83b3c;color:white;text-transform:capitalize;font-size:13px;font-weight:650}
+.date-badge>strong{display:block;padding:5px 4px;font-size:44px;line-height:1.1;font-weight:700}.date-badge.saturday>span{background:#28658c}.date-badge.sunday>span{background:#a43e4a}
+.modern-date-details{flex:1;min-width:0}.modern-mm .modern-date-details>h2{font:600 30px/1.15 Georgia,serif;text-transform:capitalize;color:#203e49;margin:0 0 10px;overflow-wrap:anywhere}
+.modern-nameday{display:flex;align-items:center;gap:7px;max-width:100%;border-radius:12px;padding:9px 12px;background:#e0eee2;color:#30594c;border:1px solid #b7d1bb;line-height:1.4;font-size:14px}.modern-nameday .mm-icon{width:19px;height:19px}.modern-holiday{font-size:12px;margin-top:8px;color:#87423c;line-height:1.5}
+.modern-mm.diary-layout .book-right .modern-day-actions{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:10px;margin:0 0 22px}
+.modern-mm.diary-layout .modern-day-actions button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;min-height:78px;border-radius:14px;padding:12px 6px;font-size:16px;line-height:1.2;box-shadow:0 3px 0 #203e491a;letter-spacing:0;border:1px solid #173e4d}
+.modern-mm .modern-day-actions button .mm-icon{width:28px;height:28px}.modern-day-actions button span{max-width:100%;overflow-wrap:normal}
+.daily-sections{border-top:1px solid #d7dcd4}
+.daily-events-block,.daily-notes-block{padding:20px 0 0}.daily-events-block{padding-bottom:18px;border-bottom:1px solid #d7dcd4}
+.daily-section-heading{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.modern-mm .daily-section-heading h2,.modern-mm .daily-section-heading label{font:750 22px/1.25 'DM Sans','Segoe UI',sans-serif;color:#244e5b;margin:0}
+.section-symbol{width:34px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}.event-symbol{background:#d2e7f2;color:#2874a0}.note-symbol{background:#ffe18a;color:#876114}.section-symbol .mm-icon{width:23px;height:23px}
+.daily-events-empty{font-size:14px;line-height:1.5;color:#59717a;margin-left:46px}
+.modern-mm .daily-note-input{display:block;box-sizing:border-box;width:100%;min-height:116px;max-height:none;overflow-y:hidden;resize:vertical;padding:8px 12px;font-size:16px;line-height:28px;border:1px solid #d9ded4;border-radius:10px;color:#294b57;background:repeating-linear-gradient(to bottom,#fffdf6 0,#fffdf6 27px,#e3e5d9 27px,#e3e5d9 28px);background-position:0 8px;box-shadow:inset 0 1px 2px #244e5b05;outline-offset:2px}
+.daily-note-input::placeholder{color:#7a8988}.daily-note-status{font-size:10px;line-height:1.5;color:#64766d;margin:6px 2px 0;min-height:15px}
+.other-day-notes{display:flex;flex-direction:column;gap:8px;margin-top:12px}.existing-day-note{display:block;text-align:left;background:#f3f1e7;border:1px solid #dfded1;border-radius:10px;padding:12px;width:100%;color:#294b57}.existing-day-note strong,.existing-day-note span{display:block;overflow-wrap:anywhere}.existing-day-note span{white-space:pre-wrap;font-size:14px;line-height:1.5;margin-top:4px}
+.modern-mm .quick-bar{border-top:1px solid #bbc9c1;background:#f8f8f1f5;gap:10px;padding-top:10px;box-shadow:0 -3px 12px #203e490a}
+.modern-mm .quick-bar a,.modern-mm .quick-bar button{flex-direction:row;gap:9px;border:1px solid #b6c6c0;border-radius:12px;background:#f0f4ed;box-shadow:0 2px 3px #203e4908;min-height:50px}.modern-mm .quick-bar a[aria-current]{background:#dfede4;color:#244e5b}.modern-mm .quick-bar .mm-icon{width:21px;height:21px}
+@media(max-width:700px){
+ .modern-mm.diary-layout .app>main,.modern-mm.diary-layout.book-home .app>main{padding-top:0}
+ .modern-mm.diary-layout .headerline{margin:0 -12px;border-radius:0 0 30px 0;padding:14px 12px;gap:9px;min-height:90px}
+ .modern-mm.diary-layout h1,.modern-mm.diary-layout.book-home h1{font-size:clamp(20px,5.5vw,27px);letter-spacing:-.7px}
+ .modern-mm.diary-layout .header-whale{display:block;width:82px;height:60px;flex-shrink:0}
+ .modern-mm.diary-layout .menu-toggle{background:#103d47;border:1px solid #5e858e55;border-radius:11px;min-width:42px;width:42px;height:44px;font-size:26px;padding:5px;color:#fff}
+ .modern-mm.diary-layout .header-details{margin:14px 2px 0;gap:10px}
+ .modern-mm.diary-layout header p{font-size:14px}.modern-mm.diary-layout #live-clock{font-size:31px}
+ .modern-mm.diary-layout .live-info{gap:10px}.modern-mm.diary-layout .weather-box{gap:7px}.modern-mm.diary-layout #weather-summary{font-size:13px;padding:6px 9px}
+ .modern-mm.diary-layout .weather-source{font-size:9px}
+ .modern-mm.diary-layout .book-right,.modern-mm.diary-layout.book-home .book-right{padding:14px;border-radius:17px}
+ .modern-mm .period-tabs{margin-bottom:14px;padding:4px;gap:2px;border-radius:14px}.modern-mm .period-tabs button{font-size:14px;gap:6px;min-height:46px;padding:8px 4px}.modern-mm .period-tabs .mm-icon{width:20px;height:20px}
+ .modern-mm.diary-layout .book-right .period-controls{margin-bottom:16px;padding-bottom:14px}
+ .modern-date-row{gap:12px;margin-bottom:18px}.modern-mm .date-badge{width:62px;min-width:62px}.date-badge>strong{font-size:37px}.date-badge>span{font-size:12px;padding:4px}
+ .modern-mm .modern-date-details>h2{font-size:25px;margin-bottom:8px}.modern-nameday{font-size:12px;padding:8px;gap:5px;border-radius:10px}.modern-nameday .mm-icon{width:16px;height:16px}
+ .modern-mm.diary-layout .book-right .modern-day-actions{gap:8px;margin-bottom:20px}.modern-mm.diary-layout .modern-day-actions button{font-size:14px;min-height:74px;padding:10px 5px;gap:7px;border-radius:12px}.modern-mm .modern-day-actions button .mm-icon{width:26px;height:26px}
+ .daily-events-block,.daily-notes-block{padding-top:16px}.daily-events-block{padding-bottom:16px}.daily-section-heading{gap:10px;margin-bottom:10px}
+ .modern-mm .daily-section-heading h2,.modern-mm .daily-section-heading label{font-size:20px}.daily-events-empty{margin-left:44px;font-size:13px}
+ .modern-mm .quick-bar{gap:7px}.modern-mm .quick-bar a,.modern-mm .quick-bar button{gap:6px;font-size:13px;padding:10px 5px;min-height:48px}.modern-mm .quick-bar .mm-icon{width:19px;height:19px}
+}
+@media(max-width:359px){.modern-mm.diary-layout .header-whale{width:65px}.modern-mm .period-tabs button{font-size:12px;gap:4px}.modern-mm .modern-date-details>h2{font-size:21px}.modern-mm.diary-layout .modern-day-actions button{font-size:12px}.modern-nameday{font-size:11px}.modern-mm .quick-bar a,.modern-mm .quick-bar button{font-size:12px;gap:4px}}
