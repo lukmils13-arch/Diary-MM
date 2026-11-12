@@ -1,0 +1,29 @@
+OSOBNÍ DIÁŘ MM – AKTUALIZACE 12. 11. 2026
+
+NAHRÁNÍ NA GITHUB
+1. V dosavadním diáři otevřete Nastavení a stáhněte zálohu.
+2. Rozbalte tento ZIP.
+3. Otevřete GitHub > lukmils13-arch/Diary-MM > Add file > Upload files.
+4. Vyberte všechny soubory UVNITŘ rozbalené složky a nahrajte je přímo do hlavní složky projektu, vedle původního index.html. Nenahrávejte samotný ZIP ani nadřazenou složku.
+5. Potvrďte Commit changes. Ostatní dosavadní soubory nemažte.
+6. Po dokončení nasazení otevřete https://lukmils13-arch.github.io/Diary-MM/index.html a obnovte stránku. Na počítači Ctrl+F5.
+
+ÚPRAVY
+- Dnes / Týden / Měsíc. Šipky posouvají příslušné období. Prostřední tlačítko vrací na současné období. Týden je pondělí až neděle.
+- Trvalá spodní lišta Zpět / Kalendář / Poznámky. Zpět vrací předchozí obrazovku uvnitř diáře. Kalendář a Poznámky zůstávají i v menu.
+- Poznámky: Připnout na displej. Žluté lístečky na hlavní stránce lze upravit, odepnout i smazat. Odepnutí poznámku nemaže.
+- Kalendář: vyberte den a + Nová událost. Datum je předvyplněné. Všechna zobrazení pracují se stejnými uloženými událostmi.
+- Události: Nejbližší / Podle osob (více osob najednou) / Měsíce (měsíc a rok) / Narozeniny / Dle štítku / vlastní štítky přímo v nabídce.
+- Karty událostí pod sebou, detail a úpravy. Výchozí řazení podle nejbližšího data. Opakované výskyty se vypisují na 12 měsíců; vzdálenější jednorázové události zůstávají zahrnuté.
+- Štítky: při úpravě události zaškrtněte existující nebo přidejte nový. Lze přiřadit více štítků. V Nastavení > Správa štítků je možné štítky přidat, přejmenovat nebo smazat. Smazání štítku nemaže události.
+- Kontrolní seznam v detailu události. Jednotlivé body lze odškrtávat.
+- Manifest spouští /Diary-MM/index.html, nikoliv kořen GitHub Pages.
+
+DATA A TELEFON
+Zůstává stejný klíč mm-diary-v1 i stejné úložiště prohlížeče. Aktualizace souborů data nesmaže. Nepoužívejte mazání dat webu ani odinstalaci jako způsob obnovení stránky. Data jsou místní v konkrétním zařízení/prohlížeči, nikoliv automaticky sdílená mezi telefony.
+Starší instalovaná aplikace může mít uloženou původní spouštěcí adresu; nový manifest sám nezaručuje okamžité přepsání staré ikony. Funkční přímá adresa je výše.
+ZIP je určen pro webovou aplikaci na GitHub Pages, nikoliv pro přestavbu samostatné APK.
+
+OVĚŘENÍ
+Prošlo 26 automatických kontrol: původní funkce, opakování, přechody období, osoby, štítky, připnuté poznámky, ukládání, kontrolní seznam, navigace, manifest a existence souborů.
+Vizuální a kompletní formulářové ověření v prohlížeči nebylo možné dokončit kvůli omezení tohoto prostředí. Po nahrání ověřte přidání události, poznámky a mobilní rozložení.

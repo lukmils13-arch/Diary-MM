@@ -106,3 +106,40 @@ body.diary-layout{padding:0;background:radial-gradient(ellipse at 15% 10%,#e4eee
   .diary-layout #toast{left:50%;max-width:calc(100% - 24px);bottom:20px}
   .diary-layout .header-whale{display:none}
 }
+/* November update: period views, quick navigation, reminders and event cards. */
+.diary-layout .app>main,.diary-layout.book-home .app>main{padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))}
+.quick-bar{position:fixed;inset:auto 0 0;display:flex;align-items:center;justify-content:flex-start;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));margin:0;border-top:1px solid #a5b7b3;background:#fffcf7f5;backdrop-filter:blur(12px);z-index:20;box-shadow:0 -4px 16px #203e4910}
+.quick-bar a,.quick-bar button{display:flex;align-items:center;justify-content:center;min-height:48px;padding:10px 20px;border:1px solid #b0c1bb;border-radius:10px;background:#edf2ec;color:#244e5b;text-decoration:none;font-size:15px;font-weight:700;gap:6px}
+.quick-bar a[aria-current]{background:#244e5b;color:#fff}
+.diary-layout .bottom-bar{bottom:90px}
+.period-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:4px;background:#e5ece7;border-radius:12px;gap:4px;margin-bottom:12px}
+.period-tabs button{min-height:44px;font-weight:700;font-size:14px;padding:8px}
+.period-tabs button[aria-pressed=true]{background:#244e5b;color:#fff;box-shadow:0 2px 4px #203e4920}
+.period-heading{font-size:22px;margin:18px 0}
+.week-agenda{display:grid;gap:14px;margin-top:12px}
+.agenda-day{border:1px solid #d6ddd6;border-radius:12px;padding:12px;background:#fffdf7;min-width:0}
+.agenda-heading{display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap}
+.agenda-date{font-weight:750;font-size:16px;text-align:left;padding:4px 0;text-transform:capitalize}
+.agenda-empty{color:#617376;font-size:13px;margin:8px 0}
+.week-note{display:block;text-align:left;background:#fff0a7;padding:10px;margin-top:8px;max-width:100%;overflow-wrap:anywhere}
+.event-filters{max-width:760px}.event-filters>label{font-size:15px;font-weight:700}.event-filters>.toolbar{margin-top:20px}
+.people-filter,.event-tags{border:1px solid #b4c4bd;border-radius:12px;margin:16px 0;padding:12px;min-width:0}
+.people-filter legend,.event-tags legend{font-weight:700;font-size:14px;padding:0 6px}.people-filter .check,.event-tags .check{display:flex;min-height:44px;margin:0;font-size:15px}
+.event-list{display:flex;flex-direction:column;gap:12px;max-width:900px}
+.event-card{border:1px solid #aebfb9;border-radius:12px;background:#fffdf7;overflow:hidden;position:relative;min-width:0}.event-card-main{display:flex;flex-direction:column;align-items:flex-start;gap:7px;width:100%;padding:16px;text-align:left;border-radius:0;min-height:80px}
+.event-card-main time{font-size:13px;color:#47636b}.event-card-main strong{font-size:18px;color:#203e49;overflow-wrap:anywhere;max-width:100%}.event-card-main>span{font-size:13px}.card-edit{margin:0 12px 6px;padding:8px;min-height:44px}
+.agenda-day .event-card{margin-top:10px}.tag-chips{display:flex;gap:6px;flex-wrap:wrap;max-width:100%}.tag-chips>span{font-size:12px;padding:4px 8px;border-radius:7px;background:#e0eae2;color:#284d45;overflow-wrap:anywhere;max-width:100%}
+.sticky-list{display:flex;flex-direction:column;gap:14px;margin-bottom:20px}.sticky-note{position:relative;padding:20px;background:linear-gradient(135deg,#fff3aa,#ffe58a);border:1px solid #e5cb65;border-radius:3px 3px 16px 3px;box-shadow:0 4px 10px #6d5a1f15;color:#55451f;min-width:0}.sticky-note:before{content:'';position:absolute;width:46px;height:10px;top:-5px;left:calc(50% - 23px);background:#f3e5b3ba;transform:rotate(-3deg)}.sticky-note h2{font-size:20px;overflow-wrap:anywhere}.sticky-note p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;font-size:15px;margin-top:8px}.sticky-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.sticky-actions button{font-size:13px;border:1px solid #d7b85f;padding:8px 12px;min-height:44px;background:#fff8d180;color:#55451f}
+.inline-input{display:flex;gap:8px}.inline-input input{flex:1;min-width:0}.inline-input button{flex-shrink:0}
+.tag-management{margin-top:18px}.tag-management-row{display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid #d8dfd7;padding:12px 0}.tag-management-row input{flex-basis:100%}.tag-management-row button{background:#e6ece4;padding:8px 12px;font-size:13px}
+.selected-day{margin:18px 0 0}.selected-day .primary{margin-bottom:12px}.selected-day h2{font-size:20px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.diary-layout #toast{bottom:calc(90px + env(safe-area-inset-bottom,0px));z-index:40}
+@media(max-width:700px){
+ .quick-bar{gap:6px;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px))}
+ .quick-bar a,.quick-bar button{flex:1;padding:10px 5px;font-size:13px;min-width:0}
+ .diary-layout .bottom-bar{bottom:0}
+ .diary-layout .app>main,.diary-layout.book-home .app>main{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+ .period-heading{font-size:18px}.agenda-day{padding:10px}.agenda-heading .smallbtn{font-size:12px}.agenda-date{font-size:15px}
+ .event-card-main strong{font-size:16px}.event-card-main{padding:13px}.sticky-note{padding:17px}.sticky-note h2{font-size:18px}
+ .diary-layout .book-right .selected-day{padding:12px}.diary-layout .book-right .selected-day h2{font-size:17px}
+}
