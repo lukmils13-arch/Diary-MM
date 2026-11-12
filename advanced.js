@@ -1,0 +1,51 @@
+/* People, independent filters, document gestures and safe note formatting. */
+let selectedPerson='';
+function addPerson(name){name=String(name).trim().slice(0,60);if(!name)return false;if(data.people.some(p=>p.toLocaleLowerCase('cs')===name.toLocaleLowerCase('cs'))){toast('Tato osoba už existuje');return false;}data.people.push(name);return save();}
+function renamePerson(oldName,name){name=String(name).trim().slice(0,60);if(!name)return false;if(data.people.some(p=>p!==oldName&&p.toLocaleLowerCase('cs')===name.toLocaleLowerCase('cs'))){toast('Tato osoba už existuje');return false;}data.people=data.people.map(p=>p===oldName?name:p);data.events.forEach(e=>{if(e.owner===oldName)e.owner=name;});eventPeople=eventPeople.map(p=>p===oldName?name:p);if(selectedPerson===oldName)selectedPerson=name;return save();}
+function removePerson(name){if(!confirm('Odstranit osobu „'+name+'“? Její události zůstanou bez přiřazení.'))return false;data.people=data.people.filter(p=>p!==name);data.events.forEach(e=>{if(e.owner===name)e.owner='';});eventPeople=eventPeople.filter(p=>p!==name);if(selectedPerson===name)selectedPerson='';return save();}
+function refreshPeopleSettings(){modal.close();render();openPeopleSettings();}
+function openPeopleSettings(){showDialog('Osoby',`<label for="new-person">Nová osoba</label><div class="inline-input"><input id="new-person" maxlength="60" placeholder="Jméno"><button type="button" class="primary" onclick="if(addPerson(document.getElementById('new-person').value))refreshPeopleSettings()">Přidat</button></div><div class="tag-management">${data.people.map((name,i)=>`<div class="tag-management-row"><label class="sr-only" for="person-${i}">Jméno osoby</label><input id="person-${i}" value="${esc(name)}" maxlength="60"><button type="button" data-name="${esc(name)}" onclick="if(renamePerson(this.dataset.name,document.getElementById('person-${i}').value))refreshPeopleSettings()">Přejmenovat</button><button type="button" data-name="${esc(name)}" onclick="if(removePerson(this.dataset.name))refreshPeopleSettings()">Odstranit</button></div>`).join('')}</div>`,()=>modal.close(),'Zavřít');}
+function setPersonFilter(name){selectedPerson=data.people.includes(name)?name:'';render();}
+const resultsBeforePeople=window.eventResults;
+window.eventResults=function(){return resultsBeforePeople().filter(({event:e})=>!selectedPerson||e.owner===selectedPerson);};
+// Use the original event list, replacing child cards with an independent select.
+window.eventsPage=function(){const page=compactEventsOriginal();return `<div class="person-select"><label for="person-filter">Osoby</label><select id="person-filter" onchange="setPersonFilter(this.value)"><option value="">Všichni</option>${data.people.map(name=>`<option value="${esc(name)}" ${selectedPerson===name?'selected':''}>${esc(name)}</option>`).join('')}</select></div>`+page;};
+const openEventBeforePeople=window.openEvent;
+window.openEvent=function(id,kind='event',owner=''){if(!id&&!owner&&selectedPerson)owner=selectedPerson;openEventBeforePeople(id,kind,owner);};
+// Snapshot the independent person filter for the in-app Back button.
+const snapshotBeforePeople=window.snapshotScreen;
+window.snapshotScreen=function(){return {...snapshotBeforePeople(),person:selectedPerson};};
+const backBeforePeople=window.navigateBack;
+window.navigateBack=function(){if(!modal.open){selectedPerson=routeStack.length?routeStack[routeStack.length-1].person||'':'';}backBeforePeople();};
+// Safe HTML is generated from a restricted set of DOM nodes; no attributes survive.
+function serializeNoteNode(node){
+ if(node.nodeType===3)return esc(node.nodeValue||'');
+ if(node.nodeType!==1&&node.nodeType!==11)return '';
+ const tag=(node.tagName||'').toLowerCase();
+ if(['script','style','iframe','object','embed','svg','math','img','video','audio','input','button'].includes(tag))return '';
+ let text=Array.from(node.childNodes||[]).map(serializeNoteNode).join('');
+ const allowed={b:'strong',strong:'strong',i:'em',em:'em',u:'u',mark:'mark',p:'p',div:'div',ul:'ul',ol:'ol',li:'li'};
+ if(tag==='br')return '<br>';
+ if(tag==='span'&&node.style){if(node.style.fontWeight==='bold'||Number(node.style.fontWeight)>=600)text='<strong>'+text+'</strong>';if(node.style.fontStyle==='italic')text='<em>'+text+'</em>';if((node.style.textDecorationLine||node.style.textDecoration||'').includes('underline'))text='<u>'+text+'</u>';if(node.style.backgroundColor&&node.style.backgroundColor!=='transparent')text='<mark>'+text+'</mark>';}
+ return allowed[tag]?`<${allowed[tag]}>${text}</${allowed[tag]}>`:text;
+}
+function serializeNoteContent(node){return Array.from(node.childNodes||[]).map(serializeNoteNode).join('');}
+function safeNoteHtml(html,plain=''){if(!html)return esc(plain).replace(/\n/g,'<br>');const template=document.createElement('template');template.innerHTML=String(html).slice(0,240000);return serializeNoteNode(template.content);}
+function richToolbar(id){return `<div class="rich-toolbar" role="toolbar" aria-label="Formátování poznámky" onpointerdown="if(event.target.closest('button'))event.preventDefault()"><button type="button" data-editor="${id}" onclick="formatNote(this.dataset.editor,'bold')" aria-label="Tučně"><b>B</b></button><button type="button" data-editor="${id}" onclick="formatNote(this.dataset.editor,'italic')" aria-label="Kurzíva"><i>I</i></button><button type="button" data-editor="${id}" onclick="formatNote(this.dataset.editor,'underline')" aria-label="Podtrhnout"><u>U</u></button><button type="button" data-editor="${id}" onclick="formatNote(this.dataset.editor,'hiliteColor')" aria-label="Žlutý zvýrazňovač"><mark>A</mark></button><button type="button" data-editor="${id}" onclick="formatNote(this.dataset.editor,'removeFormat')" aria-label="Vymazat formátování">Tx</button></div>`;}
+function formatNote(id,command){const editor=document.getElementById(id);if(!editor)return;editor.focus();document.execCommand(command,false,command==='hiliteColor'?'#fff09a':null);editor.dispatchEvent(new Event('input',{bubbles:true}));}
+function pasteNote(event){event.preventDefault();const text=event.clipboardData?.getData('text/plain')||'';document.execCommand('insertText',false,text);}
+function saveRichDaily(editor){const text=editor.innerText;if(text.length>30000){toast('Poznámka může mít nejvýše 30 000 znaků');return;}const date=editor.dataset.date;if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||key(dateOf(date))!==date)return;let note=dailyInlineNote(date);if(!note&&!text.trim())return;if(!note){note={id:uid(),title:'Poznámky · '+fmt(dateOf(date)),body:'',date,dailyInline:true};data.notes.unshift(note);}note.body=text;note.bodyHtml=serializeNoteContent(editor);const saved=save();const status=document.getElementById('daily-note-status');if(status)status.textContent=saved?'Uloženo automaticky':'Uložení se nezdařilo. Zkopírujte si text.';}
+const dailySectionBeforeRich=window.dailyNotesSection;
+window.dailyNotesSection=function(date){const note=dailyInlineNote(date);return dailySectionBeforeRich(date).replace(/<textarea[\s\S]*?<\/textarea>/,`${richToolbar('daily-note-input')}<div id="daily-note-input" class="daily-note-input rich-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="daily-note-label" aria-describedby="daily-note-status" data-date="${date}" oninput="saveRichDaily(this)" onpaste="pasteNote(event)">${safeNoteHtml(note?.bodyHtml,note?.body||'')}</div>`);};
+const openNoteBeforeRich=window.openNote;
+window.openNote=function(id){openNoteBeforeRich(id);const note=data.notes.find(n=>n.id===id),textarea=document.getElementById('body');if(!textarea)return;textarea.hidden=true;textarea.insertAdjacentHTML('afterend',`${richToolbar('modal-rich-note')}<div id="modal-rich-note" class="modal-rich-note rich-editor" contenteditable="true" role="textbox" aria-label="Text poznámky" aria-multiline="true" onpaste="pasteNote(event)">${safeNoteHtml(note?.bodyHtml,note?.body||'')}</div>`);const submit=document.getElementById('form').onsubmit;document.getElementById('form').onsubmit=event=>{const editor=document.getElementById('modal-rich-note'),text=editor.innerText;if(text.length>30000){event.preventDefault();toast('Poznámka může mít nejvýše 30 000 znaků');return;}const html=serializeNoteContent(editor);textarea.value=text;const ids=new Set(data.notes.map(n=>n.id));submit(event);if(modal.open)return;const saved=id?data.notes.find(n=>n.id===id):data.notes.find(n=>!ids.has(n.id));if(saved){saved.bodyHtml=html;save();render();}};};
+function shouldTurnPage(dx,dy,elapsed){return elapsed<1100&&Math.abs(dx)>=55&&Math.abs(dx)>Math.abs(dy)*1.7;}
+let fingerStart=null;
+const swipeSurface=document.getElementById('content');
+swipeSurface.addEventListener('touchstart',event=>{if(event.touches.length!==1||event.target.closest('input,textarea,select,[contenteditable="true"],.rich-toolbar')){fingerStart=null;return;}const t=event.touches[0];fingerStart={x:t.clientX,y:t.clientY,time:Date.now()};},{passive:true});
+swipeSurface.addEventListener('touchcancel',()=>{fingerStart=null;},{passive:true});
+swipeSurface.addEventListener('touchend',event=>{const start=fingerStart;fingerStart=null;if(!start||current!=='dnes'||modal.open||document.body.classList.contains('menu-open')||event.touches.length)return;const t=event.changedTouches[0];if(!shouldTurnPage(t.clientX-start.x,t.clientY-start.y,Date.now()-start.time))return;if(String(window.getSelection?.()||'').trim())return;event.preventDefault();turnPeriod(t.clientX<start.x?1:-1);},{passive:false});
+// Preserve formatting when displaying note cards and pinned reminders.
+const renderBeforeRich=window.render;
+window.render=function(){renderBeforeRich();if(current==='poznamky')document.querySelectorAll('.noteCard').forEach((card,index)=>{const node=card.querySelector('.note'),note=data.notes[index];if(node&&note?.bodyHtml)node.innerHTML=safeNoteHtml(note.bodyHtml,note.body);});if(current==='dnes')document.querySelectorAll('.sticky-note').forEach((card,index)=>{const note=data.notes.filter(n=>n.pinned)[index];if(note?.bodyHtml)card.querySelector('p').innerHTML=safeNoteHtml(note.bodyHtml,note.body);});};
+render();
