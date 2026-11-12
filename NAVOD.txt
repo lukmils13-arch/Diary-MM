@@ -1,30 +1,23 @@
-OSOBNÍ DIÁŘ MM – VZHLED A OTEVŘENÉ POZNÁMKY
-12. listopadu 2026
+OSOBNÍ DIÁŘ MM – KOMPAKTNÍ ÚVOD A KALENDÁŘ
 
-NAHRÁNÍ
-1. Rozbalte ZIP.
-2. Otevřete projekt lukmils13-arch/Diary-MM na GitHubu.
-3. Add file > Upload files.
-4. Nahrajte všechny soubory UVNITŘ rozbalené složky do hlavní složky projektu, vedle původního index.html. Nenahrávejte ZIP ani samotnou složku.
-5. Commit changes. Ostatní soubory nemažte.
-6. Po dokončení nasazení otevřete https://lukmils13-arch.github.io/Diary-MM/index.html a obnovte stránku. Na počítači Ctrl+F5.
+1. ZIP rozbalte.
+2. GitHub > lukmils13-arch/Diary-MM > Add file > Upload files.
+3. Nahrajte všechny soubory uvnitř rozbalené složky do hlavní složky projektu, vedle dosavadního index.html.
+4. Commit changes. Ostatní soubory nemažte.
+5. Po dokončení nasazení obnovte https://lukmils13-arch.github.io/Diary-MM/index.html (na PC Ctrl+F5).
 
-NOVÁ ÚPRAVA
-- Původní kreslená velryba v horním barevném pruhu.
-- Ikony na přepínačích Dnes / Týden / Měsíc, na tlačítkách událostí a v dolní navigaci.
-- Upravené písmo, kompaktní rozložení, jemné stíny a zaoblené ovládání.
-- Události dne mají vlastní nadpis s ikonou, bez dalšího tlačítka pro vytvoření události. Slouží k tomu horní tlačítko Nová událost a tlačítka Maty / Vojta.
-- Poznámky jsou přímo otevřené na denní stránce: klepněte do pole a pište. Není třeba otevírat formulář ani mačkat Uložit.
-- Každý den má vlastní text. Ukládání probíhá při každém vstupu. Pole má přibližně čtyři řádky a podle textu se zvětšuje.
-- Denní text je běžný záznam v Poznámkách, takže je zahrnutý v záloze a lze jej i připnout na hlavní stránku.
-- Dřívější samostatné poznámky daného dne zůstávají zobrazené pod textovým polem.
-- Předchozí funkce událostí, štítků, kalendáře a připnutých lístečků jsou součástí této aktualizace.
+ZMĚNY
+Úvodní stránka využívá výšku displeje bez posouvání celé stránky. Delší události, připnuté poznámky a text denní poznámky mají vlastní posouvání uvnitř polí.
+Události dne a Nová událost jsou vedle sebe pod datem a svátkem.
+Maty a Vojta jsou nyní v Událostech: velká tlačítka filtrují dané dítě, menší tlačítka přidávají jeho událost.
+Otevřené mobilní menu má vlastní trvale dostupné spodní tlačítko Zpět pro zavření menu.
+Kalendář má vlastní rám, sedm pružných sloupců, oříznutí dlouhých jmenin a v měsíčním režimu jednu sadu navigačních šipek. U malých oken se posouvá obsah rámu.
+Původní kreslená velryba, barvy a ikony zůstávají.
+
+DATA
+Poznámky se při psaní ukládají pro konkrétní den. Uložené údaje, štítky a zálohy používají stejný formát jako předchozí verze.
+Máte-li již nějaké záznamy, před aktualizací si stáhněte zálohu v Nastavení. Nemažte data webu.
 
 OVĚŘENÍ
-33 automatických kontrol prošlo: včetně zápisu denních poznámek, oddělení jednotlivých dnů, zachování starších záznamů, rozšíření textového pole a skutečné cesty obnovení zálohy.
-Vizuální kontrolu a úplný průchod formuláři v prohlížeči se v tomto prostředí nepodařilo dokončit. Po nahrání vyzkoušejte zapsání poznámky, přechod na další den a návrat, obnovení stránky a zálohu.
-
-UKLÁDÁNÍ
-Zůstává stejný klíč mm-diary-v1. Obsah se ukládá místně na konkrétním zařízení a v daném prohlížeči. Mezi počítačem a telefonem se automaticky nesynchronizuje.
-Pokud hlášení pod textem oznámí chybu ukládání, text si zkopírujte.
-Nemažte data webu jako způsob obnovení stránky. Máte-li již vlastní záznamy, před aktualizací si stáhněte zálohu v Nastavení.
+Prošlo 35 automatických kontrol včetně poznámek, obnovy zálohy, filtrování osob a jediné navigace kalendáře.
+Vizuální ověření ve skutečném prohlížeči nebylo možné dokončit kvůli omezení prostředí. Zejména chování při otevřené klávesnici a na konkrétním telefonu ověřte po nahrání. Návod není potvrzením vizuálního testu.

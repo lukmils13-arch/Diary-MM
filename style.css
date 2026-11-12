@@ -205,3 +205,103 @@ body.diary-layout{padding:0;background:radial-gradient(ellipse at 15% 10%,#e4eee
  .modern-mm .quick-bar{gap:7px}.modern-mm .quick-bar a,.modern-mm .quick-bar button{gap:6px;font-size:13px;padding:10px 5px;min-height:48px}.modern-mm .quick-bar .mm-icon{width:19px;height:19px}
 }
 @media(max-width:359px){.modern-mm.diary-layout .header-whale{width:65px}.modern-mm .period-tabs button{font-size:12px;gap:4px}.modern-mm .modern-date-details>h2{font-size:21px}.modern-mm.diary-layout .modern-day-actions button{font-size:12px}.modern-nameday{font-size:11px}.modern-mm .quick-bar a,.modern-mm .quick-bar button{font-size:12px;gap:4px}}
+/* One-screen home: scrolling belongs to events, notes or the calendar frame. */
+body.modern-mm.compact-home{height:100dvh;overflow:hidden}
+.modern-mm.compact-home .app{height:100dvh;min-height:0;overflow:hidden}
+.modern-mm.compact-home .app>main{height:100dvh;display:flex;flex-direction:column;min-height:0;overflow:hidden;padding-top:12px;padding-bottom:calc(82px + env(safe-area-inset-bottom,0px))}
+.modern-mm.compact-home header{flex:none;margin-bottom:12px}
+.modern-mm.compact-home .headerline{min-height:64px;padding:8px 16px;border-radius:14px 14px 25px 14px}
+.modern-mm.compact-home h1{font-size:28px}
+.modern-mm.compact-home .header-whale{width:110px;height:52px}
+.modern-mm.compact-home .header-details{margin-top:8px;gap:8px 18px}
+.modern-mm.compact-home header p{font-size:13px}
+.modern-mm.compact-home #live-clock{font-size:27px}
+.modern-mm.compact-home #weather-summary{font-size:12px;padding:4px 8px;min-height:36px}
+.modern-mm.compact-home #content{display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden}
+.modern-mm.compact-home #content>.sticky-list{flex:0 1 auto;max-height:18%;overflow:auto;margin-bottom:8px}
+.modern-mm.compact-home #content>.book-right{flex:1;min-height:0;max-height:100%;overflow:auto;padding:14px}
+.modern-mm.compact-day #content>.book-right{overflow:hidden;display:flex;flex-direction:column}
+.modern-mm.compact-day .book-right>.modern-day{flex:1;min-height:0;display:flex;flex-direction:column;gap:0;overflow:hidden}
+.modern-mm.compact-home .period-tabs{flex:none;margin-bottom:8px;padding:3px}
+.modern-mm.compact-home .period-tabs button{min-height:40px;font-size:14px;padding:6px}
+.modern-mm.compact-home .period-tabs .mm-icon{width:20px;height:20px}
+.modern-mm.compact-home .book-right .period-controls{flex:none;padding:0 0 8px;margin:0 0 10px}
+.modern-mm.compact-home .book-right .period-controls button{min-height:40px}
+.modern-mm.compact-home .modern-date-row{flex:none;margin-bottom:10px;gap:12px}
+.modern-mm.compact-home .date-badge{width:60px;min-width:60px}
+.modern-mm.compact-home .date-badge>span{padding:3px;font-size:11px}
+.modern-mm.compact-home .date-badge>strong{font-size:34px;padding:3px}
+.modern-mm.compact-home .modern-date-details>h2{font-size:25px;margin-bottom:6px}
+.modern-mm.compact-home .modern-nameday{padding:6px 9px;font-size:12px}
+.modern-mm.compact-home .modern-holiday{margin-top:3px;font-size:11px}
+.modern-mm.compact-home .daily-sections{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.modern-mm.compact-home .daily-events-block{display:flex;flex-direction:column;flex:0 1 auto;min-height:70px;max-height:43%;padding:10px 0;border-bottom:1px solid #d7dcd4}
+.modern-mm.compact-home .daily-section-heading{flex:none;gap:8px;margin-bottom:6px;min-height:34px}
+.modern-mm.compact-home .daily-section-heading h2,.modern-mm.compact-home .daily-section-heading label{font-size:18px}
+.modern-mm.compact-home .section-symbol{width:28px;height:30px;border-radius:7px}
+.modern-mm.compact-home .section-symbol .mm-icon{width:19px;height:19px}
+.modern-mm.compact-home .compact-new-event{margin-left:auto;display:flex;align-items:center;justify-content:center;gap:6px;min-height:40px;font-size:13px;padding:7px 10px;white-space:nowrap;border-radius:10px}
+.modern-mm.compact-home .compact-new-event .mm-icon{width:19px;height:19px}
+.modern-mm.compact-home .daily-events-list{min-height:0;overflow-y:auto;overscroll-behavior:contain;padding-right:3px}
+.modern-mm.compact-home .daily-events-empty{margin-left:36px;font-size:12px;line-height:1.4}
+.modern-mm.compact-home .daily-events-list .row{padding:8px;margin-bottom:6px;min-height:48px}
+.modern-mm.compact-home .daily-events-list .rowbody strong{font-size:14px}
+.modern-mm.compact-home .daily-events-list .rowbody p{font-size:11px}
+.modern-mm.compact-home .daily-notes-block{flex:1;display:flex;flex-direction:column;min-height:64px;overflow:hidden;padding-top:10px}
+.modern-mm.compact-home .daily-note-input{height:100%;min-height:40px;flex:1;resize:none;overflow-y:auto;overscroll-behavior:contain;line-height:25px;padding:6px 10px;background-size:auto; background-image:repeating-linear-gradient(to bottom,#fffdf6 0,#fffdf6 24px,#e3e5d9 24px,#e3e5d9 25px)}
+.modern-mm.compact-home .daily-note-status{flex:none;margin-top:4px;font-size:10px}
+.modern-mm.compact-home .other-day-notes{flex:0 1 auto;max-height:25%;overflow:auto;margin-top:5px}
+.calendar-frame{width:100%;max-width:100%;min-width:0;overflow:auto;overscroll-behavior:contain;border-radius:12px}
+.calendar-frame>div{min-width:0;max-width:100%;width:100%}
+.calendar-frame .days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;min-width:0;width:100%}
+.modern-mm .calendar-frame .monthlarge .day{width:100%;min-width:0;max-width:none;height:clamp(45px,8vw,72px);min-height:44px;padding:5px 2px;aspect-ratio:auto;border-radius:8px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+.modern-mm .calendar-frame .cal-name{min-width:0;max-width:100%;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px;line-height:1.2}
+.modern-mm .calendar-frame .cal-name-full{display:block}.modern-mm .calendar-frame .cal-name-short{display:none}
+.modern-mm .calendar-frame .daynum{font-size:14px;line-height:1.2}
+.modern-mm .calendar-frame .weekday{font-size:10px;padding:6px 0;min-width:0}
+.modern-mm .calendar-frame .calendarhead{gap:6px;margin-bottom:8px;min-width:0}.calendarhead b{min-width:0;text-align:center}
+.modern-mm.compact-home:not(.compact-day) .book-right .diarypage{min-height:0;height:auto;max-height:none}
+.modern-mm.compact-home:not(.compact-day) .calendar-frame{flex:1;min-height:0;max-height:65dvh}
+.child-event-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px;max-width:760px}
+.child-event-filter{display:flex;flex-direction:column;align-items:stretch;border:1px solid #b7c6c1;border-radius:12px;padding:8px;background:#fffdf7;min-width:0}
+.child-filter{display:flex;align-items:center;justify-content:center;gap:9px;min-height:48px;border-radius:9px;color:white;font-weight:750;font-size:17px}
+.maty-filter{background:#285e8e}.vojta-filter{background:#6b5c20}.child-event-filter .smallbtn{font-size:12px;padding:8px 3px;min-height:44px}
+.menu-close{display:none}
+@media(max-width:700px){
+ .modern-mm.compact-home .app>main{padding-top:0;padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+ .modern-mm.compact-home header{margin-bottom:10px}
+ .modern-mm.compact-home .headerline{margin:0 -12px;padding:6px 12px;min-height:60px;border-radius:0 0 24px 0}
+ .modern-mm.compact-home h1{font-size:22px}.modern-mm.compact-home .header-whale{width:70px;height:46px}
+ .modern-mm.compact-home .header-details{margin:8px 1px 0;gap:5px;flex-direction:row;align-items:center;flex-wrap:wrap}
+ .modern-mm.compact-home header p{flex-basis:100%;font-size:12px}.modern-mm.compact-home .live-info{gap:10px;min-height:34px}
+ .modern-mm.compact-home .weather-source{font-size:9px}.modern-mm.compact-home #live-clock{font-size:26px}
+ .modern-mm.compact-home #content>.book-right{padding:10px;border-radius:14px}
+ .modern-mm.compact-home .daily-section-heading h2{font-size:16px}.modern-mm.compact-home .daily-section-heading label{font-size:17px}
+ .modern-mm.compact-home .compact-new-event{font-size:12px;padding:7px;gap:4px}.modern-mm.compact-home .compact-new-event .mm-icon{width:17px}
+ .modern-mm .calendar-frame .cal-name-full{display:none}.modern-mm .calendar-frame .cal-name-short{display:block;font-size:8px}
+ .modern-mm .calendar-frame .monthlarge .day{height:51px}.modern-mm .calendar-frame .monthlarge .weekday{padding:6px 0}
+ .modern-mm.diary-layout .bottom-bar{display:flex;flex-direction:column;padding:64px 14px max(12px,env(safe-area-inset-bottom,0px));height:100dvh;max-height:100dvh;overflow:hidden}
+ .modern-mm.diary-layout #nav{flex:1;min-height:0;overflow-y:auto;padding-bottom:12px}
+ .modern-mm .menu-close{display:flex;align-items:center;justify-content:center;gap:10px;flex:none;width:100%;min-height:48px;background:#244e5b;color:#fff;border:1px solid #173f4c;border-radius:10px;font-size:16px;font-weight:750;margin-top:8px}
+ .modern-mm .quick-bar{padding-top:8px;padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}
+}
+@media(max-height:740px){
+ .modern-mm.compact-home .app>main{padding-bottom:calc(70px + env(safe-area-inset-bottom,0px))}
+ .modern-mm.compact-home .headerline{min-height:52px;padding-top:3px;padding-bottom:3px}
+ .modern-mm.compact-home .header-whale{height:40px}.modern-mm.compact-home header{margin-bottom:7px}
+ .modern-mm.compact-home .header-details{margin-top:4px;gap:2px}.modern-mm.compact-home .live-info{min-height:32px}
+ .modern-mm.compact-home .period-tabs{margin-bottom:5px}.modern-mm.compact-home .period-tabs button{min-height:36px;padding:4px;font-size:13px}
+ .modern-mm.compact-home .book-right .period-controls{margin-bottom:7px;padding-bottom:6px}
+ .modern-mm.compact-home .book-right .period-controls button:first-child,.modern-mm.compact-home .book-right .period-controls button:last-child,.modern-mm.compact-home .book-right .period-controls button:nth-child(2){min-height:36px;padding-top:4px;padding-bottom:4px}
+ .modern-mm.compact-home .modern-date-row{margin-bottom:7px}.modern-mm.compact-home .modern-date-details>h2{font-size:22px;margin-bottom:4px}
+ .modern-mm.compact-home .date-badge>strong{font-size:29px}.modern-mm.compact-home .modern-nameday{padding:4px 7px;font-size:11px}
+ .modern-mm.compact-home .daily-events-block{padding:7px 0;min-height:65px}.modern-mm.compact-home .daily-notes-block{padding-top:7px}
+ .modern-mm.compact-home .daily-section-heading{margin-bottom:4px}.modern-mm.compact-home .daily-note-status{margin-top:2px}
+}
+@media(max-height:590px){
+ .modern-mm.compact-home header p{display:none}.modern-mm.compact-home .headerline{min-height:46px}.modern-mm.compact-home h1{font-size:20px}.modern-mm.compact-home .header-whale{height:35px}
+ .modern-mm.compact-home .weather-source{display:none}.modern-mm.compact-home #weather-summary{min-height:30px;font-size:11px}.modern-mm.compact-home #weather-summary small{display:none}
+ .modern-mm.compact-home .modern-date-row{gap:8px}.modern-mm.compact-home .date-badge{width:48px;min-width:48px}.modern-mm.compact-home .date-badge>strong{font-size:25px}.modern-mm.compact-home .date-badge>span{font-size:10px}
+ .modern-mm.compact-home .daily-section-heading h2,.modern-mm.compact-home .daily-section-heading label{font-size:14px}.modern-mm.compact-home .section-symbol{width:22px;height:26px}.modern-mm.compact-home .compact-new-event{font-size:11px;min-height:34px}
+}
+.modern-mm .calendar-caption{font-size:20px;text-align:center;text-transform:capitalize;margin:8px 0 12px;line-height:1.3}
