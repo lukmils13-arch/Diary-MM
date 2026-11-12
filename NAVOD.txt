@@ -1,25 +1,23 @@
-OSOBNÍ DIÁŘ MM – OSOBY, GESTA A FORMÁTOVÁNÍ
+OSOBNÍ DIÁŘ MM – TYPY, NASTAVENÍ A CELÝ MĚSÍC
 
-INSTALACE AKTUALIZACE
-1. Máte-li již záznamy, stáhněte zálohu v Nastavení.
-2. ZIP rozbalte.
+NAHRÁNÍ
+1. Pokud už máte záznamy, stáhněte zálohu v Nastavení.
+2. Rozbalte ZIP.
 3. GitHub > lukmils13-arch/Diary-MM > Add file > Upload files.
-4. Nahrajte všechny soubory uvnitř rozbalené složky vedle původního index.html. Nenahrávejte ZIP ani nadřazenou složku.
+4. Nahrajte všechny rozbalené soubory vedle původního index.html. Nenahrávejte ZIP ani nadřazenou složku.
 5. Commit changes. Ostatní soubory nemažte.
-6. Po dokončení nasazení obnovte https://lukmils13-arch.github.io/Diary-MM/index.html.
+6. Po dokončení zveřejnění obnovte https://lukmils13-arch.github.io/Diary-MM/index.html.
 
-CO JE NOVÉ
-GESTA: Na denní/týdenní/měsíční stránce přejeďte doleva pro další období, doprava pro předchozí. Gesto funguje přes obsah i tlačítka. Při psaní a označování textu nebo svislém posouvání se stránka neotáčí. Horní šipky zůstávají.
-OSOBY: Nastavení > Osoby. Přidání, přejmenování, odstranění. Nová osoba má stejné možnosti událostí a stejné kategorie jako Maty. Přejmenování se projeví u jejích událostí. Odstranění osoby ponechá události bez přiřazení.
-UDÁLOSTI: Namísto tlačítek Maty/Vojta je nahoře seznam Osoby: Všichni a všechny přidané osoby. Seznam Zobrazit filtruje současně s osobou (např. Maty + Narozeniny nebo Alena + konkrétní štítek).
-FORMULÁŘ: Osobu lze přiřadit událostem, narozeninám i svátkům. Při vytváření z filtrovaného seznamu je předvybraná daná osoba.
-POZNÁMKY: Nad textem jsou tlačítka B (tučně), I (kurzíva), U (podtrhnout), A (žlutý zvýrazňovač), Tx (odstranit formátování). Označte text a zvolte formát. Funguje u denní poznámky i ve formuláři samostatné poznámky. Denní text se ukládá automaticky, samostatná poznámka tlačítkem Uložit.
-Vložený text ze schránky se vkládá bez cizího formátování; vlastní formátování použijte tlačítky editoru.
-
-UKLÁDÁNÍ
-Zůstává klíč mm-diary-v1, běžný text poznámek i všechny dosavadní záznamy. Formátování je další údaj uložený společně s poznámkou a je součástí zálohy. Osoby jsou rovněž v záloze.
-Data jsou místní na konkrétním zařízení a v konkrétním prohlížeči. Nemažte data webu jako způsob aktualizace.
+ZMĚNY
+Nastavení má přehledná tlačítka ve skupinách Správa diáře, Zálohování a Pomoc. Vysvětlující texty jsou v Návodech.
+Nastavení > Typy událostí: přidání, přejmenování a odstranění typu. Nové typy se nabízejí pro všechny osoby. Přejmenování změní typ u souvisejících událostí. Odstranění z nabídky ponechá staré události i jejich původní typ zachované.
+Spodní lišta: Zpět / Kalendář / Události / Poznámky.
+Domů je v horní liště, hlavním menu i u otevřených formulářů. Vrací na dnešek v denním zobrazení.
+Měsíční zobrazení přiděluje prostor všem týdnům, včetně šestiřádkových měsíců. Vybraný den zvýrazňuje malé číslo. Detail dne je sbalený a rozbalí se po klepnutí na den. Jmeniny se na nízkém displeji skryjí ve prospěch čísel dnů.
+Předchozí funkce osob, štítků, gest a formátovaných poznámek jsou zahrnuté.
 
 OVĚŘENÍ
-34 automatických kontrol prošlo: původní funkce, opakování, osoby a jejich změny, dvojí filtr, rozhodování gesta, bezpečné uložení formátování a skutečná cesta obnovy zálohy s novou osobou a formátovaným textem.
-Vizuální a dotykové ověření v prohlížeči se nepodařilo v tomto prostředí dokončit. Po nahrání ověřte zejména přejetí prstem, označení textu a tlačítka formátování na telefonu.
+31 automatických kontrol prošlo: původní funkce, typy, zachování údajů, šestitýdenní měsíc a návrat Domů.
+Skutečné vizuální zobrazení celého měsíce a velikosti tlačítek na konkrétním telefonu ještě potřebují ověření. V tomto prostředí nebylo možné dokončit kontrolu v prohlížeči.
+
+Ukládání zůstává místní v konkrétním zařízení a prohlížeči pod klíčem mm-diary-v1. Typy jsou zahrnuté v záloze. Nemažte data webu jako způsob obnovení stránky.
